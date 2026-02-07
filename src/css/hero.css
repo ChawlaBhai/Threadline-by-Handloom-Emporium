@@ -54,6 +54,8 @@
     /* Larger gap */
     opacity: 0;
     animation: fadeIn 1.2s ease-out forwards 0.2s;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 /* Typography */
