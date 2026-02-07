@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Threadline</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --color-primary: #8B1538;
+            /* Burgundy */
+            --color-secondary: #D4AF37;
+            /* Gold */
+            --color-bg: #FAF7F2;
+            /* Cream */
+            --color-text: #1F1F1F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-container {
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .error-code span {
+            color: var(--color-secondary);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: var(--color-primary);
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: var(--color-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(139, 21, 56, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background-color: #6d102b;
+            box-shadow: 0 8px 16px rgba(139, 21, 56, 0.3);
+        }
+
+        .decorative-line {
+            width: 80px;
+            height: 2px;
+            background-color: var(--color-secondary);
+            margin: 0 auto 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <div class="error-code">4<span>0</span>4</div>
+        <div class="decorative-line"></div>
+        <h1>Thread Lost?</h1>
+        <p>The page you're looking for seems to have unraveled. <br>Let's get you back to our collection.</p>
+        <a href="/" class="btn">Return Home</a>
+    </div>
+</body>
+
+</html>
