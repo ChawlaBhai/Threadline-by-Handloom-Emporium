@@ -1,0 +1,195 @@
+/* Hero Section Styles */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    /* Fallback */
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Base Mobile Layout (Vertical Stack) */
+.hero-content {
+    padding: var(--spacing-md) var(--container-padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    background-color: var(--color-bg);
+    min-height: 65vh;
+    /* 65% text */
+}
+
+.hero-visual {
+    width: 100%;
+    height: 35vh;
+    /* 35% image */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Mobile Gradient Overlay */
+.hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 20%);
+    pointer-events: none;
+}
+
+.hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Branding */
+.hero-logo {
+    width: 240px;
+    /* Bigger for mobile focus */
+    margin-left: -8px;
+    margin-bottom: var(--spacing-xl);
+    /* Larger gap */
+    opacity: 0;
+    animation: fadeIn 1.2s ease-out forwards 0.2s;
+}
+
+/* Typography */
+.hero-headline {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    opacity: 0;
+    animation: slideUpFade 1s ease-out forwards 0.5s;
+}
+
+.hero-subhead {
+    font-family: var(--font-subheading);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.4;
+    opacity: 0;
+    animation: slideUpFade 1s ease-out forwards 0.7s;
+}
+
+/* CTA Group */
+.hero-cta-group {
+    display: flex;
+    flex-direction: row;
+    /* Side by side on mobile if possible, or tight stack */
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards 0.9s;
+}
+
+.hero-cta-group .btn {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* Desktop Styles (Split Screen) */
+@media (min-width: 1024px) {
+    .hero {
+        flex-direction: row;
+        align-items: center;
+        height: 100vh;
+        /* Enforce height */
+        height: 100dvh;
+    }
+
+    .hero-content {
+        flex: 0 0 40%;
+        /* Fixed 40% width */
+        width: 40%;
+        height: 100%;
+        padding: 0 5%;
+        /* Relative padding */
+        justify-content: center;
+        align-items: flex-start;
+        /* Left align explicitly */
+    }
+
+    .hero-visual {
+        flex: 0 0 60%;
+        /* Fixed 60% width */
+        width: 60%;
+        height: 100%;
+        position: relative;
+        /* Changed from absolute to relative flex child */
+        right: auto;
+        top: auto;
+    }
+
+    .hero-visual::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, var(--color-bg) 0%, transparent 15%);
+        pointer-events: none;
+    }
+
+    .hero-logo {
+        width: 280px;
+        /* Much bigger */
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .hero-headline {
+        font-size: 42px;
+        /* Smaller than before (56px) */
+        max-width: 500px;
+        line-height: 1.2;
+    }
+
+    .hero-subhead {
+        font-size: 18px;
+        /* Slightly smaller */
+        max-width: 450px;
+    }
+
+    .hero-cta-group {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-lg);
+    }
+
+    .hero-cta-group .btn {
+        width: auto;
+        padding: 12px 24px;
+        /* Smaller padding */
+        font-size: 15px;
+        /* Slightly smaller text */
+        white-space: nowrap;
+        /* Ensure one line */
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,250 @@
+/* Product Showcase Section */
+.products {
+    padding: var(--spacing-xxl) 0;
+    background-color: #ffffff;
+    /* Clean white background */
+}
+
+.products-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.products-headline {
+    font-size: 42px;
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    opacity: 0;
+    /* JS Fade */
+}
+
+/* Premium Reveal Animation */
+@keyframes premiumReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Desktop: Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    /* More breathing room */
+}
+
+/* Mobile: Sticky Stacking Animation */
+@media (max-width: 767px) {
+    .products {
+        padding: 0;
+        /* Remove padding to let cards hit edges */
+        padding-bottom: 20vh;
+        /* Bottom buffer */
+    }
+
+    .products-header {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 16px 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .products-headline {
+        font-size: 20px;
+        /* Smaller Header */
+        margin-bottom: 0;
+        padding: 0 16px;
+        line-height: 1.2;
+    }
+
+    .product-grid {
+        display: block;
+        padding: 0 var(--container-padding);
+        padding-top: 20px;
+        /* Space between header and first card */
+    }
+
+    .product-card {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 80px;
+        /* Height of header + bit of space */
+        height: calc(100vh - 100px);
+        /* Full screen minus header */
+        /* Full screen minus header */
+        margin-bottom: 40vh;
+        /* Scroll dist between stacks */
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+        border-radius: 40px;
+        /* Way curvy */
+        overflow: hidden;
+        /* Clip image */
+        transform-origin: center top;
+        transition: transform 0.4s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .product-overlay {
+        height: 50%;
+        /* Gradient covers bottom half */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+        padding: 30px;
+        justify-content: flex-end;
+    }
+
+    .product-title {
+        font-size: 28px;
+        /* Big title on card */
+        margin-bottom: 8px;
+    }
+
+    /* Last card doesn't need margin bottom to push next one away */
+    .product-card:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Premium Product Card */
+.product-card {
+    position: relative;
+    border-radius: 12px;
+    /* Softer corners */
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    /* Taller, more elegant aspect ratio */
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    /* Hidden initially */
+    transform: translateY(40px);
+    /* Initial offset */
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.6s ease;
+}
+
+/* Trigger animation when class is added via JS */
+.product-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    animation: premiumReveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Stagger delays manually or via JS (using existing delay classes) */
+.product-card.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.product-card.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.product-card.delay-300 {
+    animation-delay: 0.3s;
+}
+
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 21, 56, 0.15);
+    /* Colored shadow match primary */
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.1, 0, 0, 1);
+    /* Very smooth slow zoom */
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.15);
+}
+
+/* Premium Overlay */
+.product-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    /* Covers bottom 60% */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+    color: var(--color-white);
+    opacity: 1;
+    transition: all 0.4s ease;
+}
+
+/* Typography */
+.product-title {
+    font-family: 'Playfair Display', serif;
+    /* Use Serif for premium feel */
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ffffff, #f0e6cc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Gradient text effect */
+}
+
+.product-explore {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-secondary);
+    /* Gold */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.9;
+    transform: translateY(0);
+}
+
+.product-explore span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-explore span {
+    transform: translateX(5px);
+}

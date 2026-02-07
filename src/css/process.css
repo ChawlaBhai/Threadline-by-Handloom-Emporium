@@ -1,0 +1,191 @@
+/* Process Section */
+.process {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-white);
+}
+
+.process-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.process-headline {
+    font-size: 32px;
+    opacity: 0;
+}
+
+/* Timeline Container */
+.process-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Line Animation */
+@keyframes drawLine {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) {
+    .process-timeline {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--spacing-md);
+    }
+
+    /* Connecting Line */
+    .process-timeline::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 0;
+        /* Start 0 */
+        height: 2px;
+        background-color: rgba(212, 175, 55, 0.5);
+        /* Gold light */
+        z-index: 0;
+        transition: width 1.5s ease;
+    }
+
+    .process-timeline.animate-line::before {
+        width: 100%;
+    }
+}
+
+/* Step Item */
+.process-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    flex: 1;
+    opacity: 0;
+    /* Hidden initially */
+    transform: translateY(20px);
+}
+
+/* JS Triggered Class for Steps */
+.process-step.animate-step {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Stagger these in CSS or JS. 
+   We will rely on existing delay classes but override animation to popIn for icons */
+
+
+/* Mobile Connector */
+@media (max-width: 767px) {
+    .process-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 0;
+        /* Start 0 */
+        background-color: rgba(212, 175, 55, 0.5);
+        z-index: -1;
+        transition: height 0.8s ease;
+    }
+
+    .process-step.animate-step:not(:last-child)::after {
+        height: calc(100% - 60px + var(--spacing-xl));
+    }
+}
+
+.step-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-bg);
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+    transition: transform 0.3s ease;
+    /* Initial state for pop animation */
+    transform: scale(0);
+}
+
+.process-step.animate-step .step-icon-wrapper {
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Stagger delays for icon pops */
+.process-step.delay-100 .step-icon-wrapper {
+    animation-delay: 0.1s;
+}
+
+.process-step.delay-200 .step-icon-wrapper {
+    animation-delay: 0.3s;
+}
+
+.process-step.delay-300 .step-icon-wrapper {
+    animation-delay: 0.5s;
+}
+
+.process-step.delay-400 .step-icon-wrapper {
+    animation-delay: 0.7s;
+}
+
+
+.process-step:hover .step-icon-wrapper {
+    transform: scale(1.1);
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.step-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: var(--color-primary);
+    stroke-width: 2;
+}
+
+.process-step:hover .step-icon-wrapper svg {
+    stroke: var(--color-white);
+}
+
+.step-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+.step-desc {
+    font-size: 14px;
+    color: var(--color-text);
+    opacity: 0.8;
+    max-width: 220px;
+    margin: 0 auto;
+}

@@ -1,0 +1,141 @@
+/* Heritage Ribbon Section */
+.heritage-wrapper {
+    position: relative;
+    width: 100%;
+    /* Mobile: Static Auto Height */
+    height: auto;
+    background-color: #8B1538;
+    overflow: visible;
+    /* CRITICAL: Must be visible for sticky to work */
+}
+
+.heritage-sticky {
+    /* Mobile: Normal block flow */
+    position: relative;
+    top: auto;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 60px 0 80px 0;
+    background-color: #8B1538;
+}
+
+.relative-container {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+}
+
+.heritage-header {
+    text-align: center;
+    margin-bottom: 0;
+    opacity: 1;
+    color: var(--color-bg);
+}
+
+.heritage-headline {
+    font-size: 28px;
+    color: var(--color-secondary);
+    margin-bottom: var(--spacing-sm);
+    padding: 0 16px;
+}
+
+.heritage-subhead {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Ribbon Track - Mobile: Static Center */
+.ribbon-track {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 1;
+    /* Safety: Ensure visible by default */
+}
+
+/* Optional Entry Animation Class */
+.ribbon-track.mobile-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.ribbon-track.mobile-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ribbon-svg {
+    /* Mobile: Clean Fit */
+    width: 90%;
+    max-width: 320px;
+    /* Small/Compact */
+    height: auto;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+}
+
+/* ---------------------------------------------------------
+   DESKTOP: STICKY SCROLL LOGIC
+   (Restored to Original Successful State)
+--------------------------------------------------------- */
+@media (min-width: 768px) {
+    .heritage-wrapper {
+        height: 400vh;
+        /* Scroll Track */
+    }
+
+    .heritage-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding-top: 15vh;
+        overflow: hidden;
+    }
+
+    .relative-container {
+        margin-bottom: 0;
+    }
+
+    .ribbon-track {
+        position: absolute;
+        top: 58%;
+        left: 0;
+        width: 300%;
+        opacity: 1;
+        transform: translateY(-50%) translateX(30%);
+        /* Start Position */
+        justify-content: flex-start;
+        transition: none;
+        /* Disable mobile transitions */
+    }
+
+    .ribbon-track.mobile-hidden,
+    .ribbon-track.mobile-visible {
+        opacity: 1;
+        transform: translateY(-50%) translateX(30%);
+        /* Overwrite mobile anims */
+        transition: none;
+    }
+
+    .ribbon-svg {
+        width: auto;
+        height: 400px;
+        max-width: none;
+    }
+
+    .heritage-headline {
+        font-size: 48px;
+    }
+}

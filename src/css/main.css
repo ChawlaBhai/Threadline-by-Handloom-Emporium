@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --color-primary: #8B1538;
+  /* Burgundy */
+  --color-secondary: #D4AF37;
+  /* Gold */
+  --color-accent: #2C5F63;
+  /* Deep Teal */
+  --color-bg: #FAF7F2;
+  /* Cream */
+  --color-text: #1F1F1F;
+  /* Charcoal */
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-subheading: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 80px;
+
+  /* Container */
+  --container-width: 1400px;
+  --container-padding: 16px;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-subheading);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: 0 4px 12px rgba(139, 21, 56, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: #6d102b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 21, 56, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* Visually Hidden (for accessibility) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Golden Accent Button for CTA */
+#cta-whatsapp {
+  background-color: var(--color-secondary);
+  /* Gold */
+  color: var(--color-primary);
+  /* Burgundy Text */
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+  font-weight: 700;
+}
+
+#cta-whatsapp:hover {
+  background-color: #bfa035;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+}
