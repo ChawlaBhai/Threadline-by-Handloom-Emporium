@@ -8,5 +8,6 @@ import '../css/social-proof.css';
 import '../css/process.css';
 import '../css/footer.css';
 import './animations.js';
+import './products.js';
 
 console.log('Threadline website loaded.');

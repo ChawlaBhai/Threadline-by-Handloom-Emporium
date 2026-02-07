@@ -42,61 +42,109 @@
     /* More breathing room */
 }
 
-/* Mobile: Sticky Stacking Animation */
+/* Mobile: Horizontal Loop Slideshow */
 @media (max-width: 767px) {
     .products {
         padding: 0;
-        /* Remove padding to let cards hit edges */
-        padding-bottom: 20vh;
-        /* Bottom buffer */
+        height: 100vh;
+        /* Use vh for stability, dvh can jump */
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        /* Start from top */
+        background-color: #fff;
+        position: relative;
     }
 
     .products-header {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 16px 0;
+        position: relative;
+        /* Back in flow */
+        width: 100%;
+        z-index: 20;
+        background: transparent;
+        border: none;
+        padding: 60px 0 20px 0;
+        /* Add top padding to clear global header */
         margin-bottom: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        flex: 0 0 auto;
+        /* Don't shrink */
     }
 
     .products-headline {
-        font-size: 20px;
-        /* Smaller Header */
+        font-size: 26px;
         margin-bottom: 0;
-        padding: 0 16px;
+        padding: 0 20px;
         line-height: 1.2;
+        color: var(--color-primary);
+        text-shadow: none;
     }
 
     .product-grid {
-        display: block;
-        padding: 0 var(--container-padding);
-        padding-top: 20px;
-        /* Space between header and first card */
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+
+        /* Full Width Breakout Logic */
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+
+        padding: 0;
+        padding-top: 60px;
+        padding-bottom: 80px;
+
+        /* Ensure no scrollbars */
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .product-grid::-webkit-scrollbar {
+        display: none;
     }
 
     .product-card {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 80px;
-        /* Height of header + bit of space */
-        height: calc(100vh - 100px);
-        /* Full screen minus header */
-        /* Full screen minus header */
-        margin-bottom: 40vh;
-        /* Scroll dist between stacks */
-        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
-        border-radius: 40px;
-        /* Way curvy */
+        flex: 0 0 85vw;
+        /* Wide cards */
+        width: 85vw;
+        height: 60vh;
+        max-width: 360px;
+
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+
+        margin: 0 8px;
+        /* Tight gap */
+
+        position: relative;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        /* Seamless State: No fade, subtle scale */
+        transform: scale(0.96);
+        opacity: 1;
+        /* Fully visible always */
+        z-index: 1;
+        transition: transform 0.4s ease-out;
+
         overflow: hidden;
-        /* Clip image */
-        transform-origin: center top;
-        transition: transform 0.4s ease;
-        display: flex;
-        flex-direction: column;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        animation: none !important;
+    }
+
+    /* Active State */
+    .product-card.active-slide {
+        transform: scale(1) !important;
+        opacity: 1 !important;
+        z-index: 10;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
     }
 
     .product-image {
@@ -106,22 +154,31 @@
     }
 
     .product-overlay {
-        height: 50%;
-        /* Gradient covers bottom half */
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-        padding: 30px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+        display: flex;
+        flex-direction: column;
         justify-content: flex-end;
+        padding: 24px;
     }
 
     .product-title {
         font-size: 28px;
-        /* Big title on card */
+        color: #fff;
         margin-bottom: 8px;
+        transform: translateY(0);
     }
 
-    /* Last card doesn't need margin bottom to push next one away */
-    .product-card:last-child {
-        margin-bottom: 0;
+    .product-explore {
+        color: var(--color-secondary);
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 }
 

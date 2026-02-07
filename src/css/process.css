@@ -99,24 +99,81 @@
    We will rely on existing delay classes but override animation to popIn for icons */
 
 
-/* Mobile Connector */
+/* Mobile Connector & Layout Refactor */
 @media (max-width: 767px) {
+    .process {
+        padding: 40px 0 80px 0 !important;
+        /* Top: 40px, Bottom: 80px (End Gap) */
+    }
+
+    .process-timeline {
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        /* Override generic gap */
+    }
+
+    .process-step {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        padding-bottom: 40px !important;
+        /* Larger gap between steps (40px) */
+        margin-bottom: 0 !important;
+    }
+
+    .process-step:last-child {
+        padding-bottom: 0 !important;
+    }
+
+    .step-icon-wrapper {
+        margin: 0 !important;
+        margin-right: 32px !important;
+        /* Large gap to text */
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        z-index: 2;
+        background-color: var(--color-bg);
+    }
+
+    .step-icon-wrapper svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* The Vertical Line */
     .process-step:not(:last-child)::after {
         content: '';
         position: absolute;
-        top: 60px;
-        left: 50%;
+        top: 50px;
+        left: 25px;
         transform: translateX(-50%);
         width: 2px;
-        height: 0;
-        /* Start 0 */
-        background-color: rgba(212, 175, 55, 0.5);
-        z-index: -1;
-        transition: height 0.8s ease;
+        height: 100%;
+        background-color: rgba(212, 175, 55, 0.3);
+        z-index: 1;
     }
 
-    .process-step.animate-step:not(:last-child)::after {
-        height: calc(100% - 60px + var(--spacing-xl));
+    /* Step Content Container */
+    .step-content {
+        padding-top: 0;
+        flex: 1;
+    }
+
+    .step-title {
+        font-size: 18px;
+        margin-bottom: 2px !important;
+        line-height: 1.2;
+    }
+
+    .step-desc {
+        max-width: 100%;
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.4;
     }
 }
 
@@ -133,6 +190,8 @@
     transition: transform 0.3s ease;
     /* Initial state for pop animation */
     transform: scale(0);
+    position: relative;
+    /* For z-index context */
 }
 
 .process-step.animate-step .step-icon-wrapper {
